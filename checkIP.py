@@ -57,13 +57,15 @@ def propxy(url,ip):
 def checkOneIP(ip):
     try:
         addThreadCount()
-        url='https://kyfw.12306.cn/otn/login/checkUser'
+        url='https://kyfw.12306.cn/otn/login/init'
         res= propxy(url,ip)
         if res :
-            resobj=json.loads(res)
-            if(resobj['status']):
-                print ip
-                outip(ip)
+            print ip
+            outip(ip)
+            # resobj=json.loads(res)
+            # if(resobj['status']):
+            #     print ip
+            #     outip(ip)
     finally:
         subThreadCount()
 
