@@ -72,12 +72,14 @@ def getYupiaoCount(yupiaoStr,seat):
 
 def getNewIndex():
     global countLock,index
-    countLock.acquire()
-    index=index+1
-    if(index>=len(proxyadds)):
-        index=0
-    return index
-    countLock.release()
+    try:
+        countLock.acquire()
+        index=index+1
+        if(index>=len(proxyadds)):
+            index=0
+        return index
+    finally:
+        countLock.release()
 
 
 def query(proxy):

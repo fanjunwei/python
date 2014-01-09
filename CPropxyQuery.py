@@ -15,39 +15,46 @@ proxyFilePath=sys.argv[1]
 argdate=sys.argv[2]
 argsessionFrom=sys.argv[3]
 argsessionTo=sys.argv[4]
+
+QueryAddrss='https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=ADULT'%(argdate,argsessionFrom,argsessionTo)
 Tranicode=sys.argv[5]
 Seat=sys.argv[6]
 MustCount=2
-QueryAddrss='https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=ADULT'%(argdate,argsessionFrom,argsessionTo)
 
 UserAgent='Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11B554a (392691824)/Worklight/6.0.0'
 countLock=threading.RLock()
 
 index=0
-ips =[]
+proxyadds =[]
 mFinded=False
 def printLog(log):
     sys.stderr.write(log+'\n')
 
-def propxy(url,ip):
+def propxy(url,proxyUrl):
+    printLog(proxyUrl)
+    starts = time.time()
+    proxy_support = urllib2.ProxyHandler({"http":"http://"+proxyUrl})
+    opener = urllib2.build_opener(proxy_support)
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', UserAgent)
+    req.add_header('X-Forwarded-For', '192.168.1.2')
+    req.add_header('X-Proxy-ID', '000000000')
+    res=''
     try:
-        array=url.split('/')
-        host=array[2]
-        array[2]=ip
-        url='/'.join(array)
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', UserAgent)
-        req.add_header('Host', host)
-        return urllib2.urlopen(req,timeout=5).read()
-    except:
-        printLog('err')
+        f=opener.open(req,timeout=60)
+        res= f.read()
+    except urllib2.URLError ,e:
+        res=None
+
+    return res
 
 
 def readProxyAddFile():
-    global ips
+    global proxyadds
     file = open(proxyFilePath,'r')
     for line in file.readlines():
-        ips.append(line.strip())
+        args=line.split('\t')
+        proxyadds.append(args[0])
 
 def getYupiaoCount(yupiaoStr,seat):
     out=0
@@ -65,19 +72,17 @@ def getYupiaoCount(yupiaoStr,seat):
 
 def getNewIndex():
     global countLock,index
-    try:
-        countLock.acquire()
-        index=index+1
-        if(index>=len(ips)):
-            index=0
-        return index
-    finally:
-        countLock.release()
+    countLock.acquire()
+    index=index+1
+    if(index>=len(proxyadds)):
+        index=0
+    return index
+    countLock.release()
 
 
-def query(ip):
+def query(proxy):
     global QueryAddrss, Tranicode, Seat,MustCount,mFinded
-    res = propxy(QueryAddrss,ip)
+    res = propxy(QueryAddrss,proxy)
     obj = json.loads(res)
     data=obj['data']
     #queryLeftNewDTO=data['queryLeftNewDTO']
@@ -99,7 +104,6 @@ def query(ip):
             # print code
             # print yupiaoStr
             # print decodeSecretStr
-            #printLog(time.ctime(timeTick))
 
             if(not mFinded and count>MustCount):
                 mFinded=True
@@ -110,7 +114,7 @@ def queryThread():
     while not mFinded:
         index=getNewIndex()
         try:
-            query(ips[index])
+            query(proxyadds[index])
         except Exception ,e:
             #printLog(e.message)
             time.sleep(1)

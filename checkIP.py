@@ -33,7 +33,7 @@ def outip(ip):
     writeLock.acquire()
     try:
         txt = ip+'\n'
-        output = open('/Users/fanjunwei003/Desktop/enableIp.txt', 'a')
+        output = open('enableIp.txt', 'a')
         output.write(txt)
         output.close()
     finally:
@@ -69,9 +69,9 @@ def checkOneIP(ip):
     finally:
         subThreadCount()
 
-httpres= urllib.urlopen('http://www.fishlee.net/apps/cn12306/ipservice/getall').read()
+httpres= urllib.urlopen('http://www.fishlee.net/apps/cn12306/ipservice/getlist').read()
 
-
+print httpres
 obj = json.loads(httpres)
 for i in obj:
     if i['host']=='kyfw.12306.cn':
