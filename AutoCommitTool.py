@@ -6,6 +6,11 @@ import StringIO
 import sys
 import inspect
 import os
+this_file=inspect.getfile(inspect.currentframe())
+currentPath=os.path.abspath(os.path.dirname(this_file))
+sys.path.append(currentPath)
+import CIpQuery
+
 ipQuery=None
 def request(context, flow):
     global  ipQuery
@@ -31,8 +36,6 @@ def response(context, flow):
                 ipQuery.endQuery()
                 ipQuery=None
         if not ipQuery:
-            sys.path.append('/Users/fanjunwei003/Documents/PycharmProjects/my12306/')
-            import CIpQuery
             #@"二等座" @"一等座"  @"商务座"  @"特等座"  @"高级软卧" @"软卧"   @"硬卧"   @"软座"   @"硬座"
             #@"O"     @"M"      @"9"      @"P"      @"6"       @"4"      @"3"      @"2"     @"1"
             ipQuery=CIpQuery.CIpQuery('D632','O',queryURL=url)
