@@ -7,6 +7,8 @@ import threading
 import thread
 import sys
 import base64
+import inspect
+import os
 
 class CIpQuery(object):
     
@@ -35,12 +37,15 @@ class CIpQuery(object):
         self.mIps =[]
         self.mFinished=False
         self.readProxyFromFile()
+        this_file=inspect.getfile(inspect.currentframe())
+        self.mCurrentPath=os.path.abspath(os.path.dirname(this_file))
     def printLog(self,log):
         if not self.mFinished:
             print log
 
     def propxy(self,url,ip):
         try:
+            #print ip
             array=url.split('/')
             host=array[2]
             array[2]=ip
@@ -48,7 +53,7 @@ class CIpQuery(object):
             req = urllib2.Request(url)
             req.add_header('User-Agent', self.mUserAgent)
             req.add_header('Host', host)
-            return urllib2.urlopen(req,timeout=60).read()
+            return urllib2.urlopen(req,timeout=20).read()
         except:
             self.printLog('err')
 
@@ -86,6 +91,7 @@ class CIpQuery(object):
     def query(self,ip):
         if self.mFinished :
             return
+        print ip
         print '预订%s,%s\n'%(self.mTrainCode,self.mSeatMap[self.mSeat])
         res = self.propxy(self.mQueryURL,ip)
         if self.mFinished :
@@ -112,17 +118,20 @@ class CIpQuery(object):
                 # print code
                 # print yupiaoStr
                 # print decodeSecretStr
-                #printLog(time.ctime(timeTick))
+                print(time.ctime(timeTick))
 
                 if(not self.mFinished and count>self.mMustCount):
                     obj['data']=[tr];
                     res=json.dumps(obj)
                     self.mFinished=True
                     self.enableRes=res
-                    print '================================ ok ====================================='
+                    print '====== ok ======'
+                    print '====== ok ======'
+                    print '====== ok ======'
+                    os.system(os.path.join(self.mCurrentPath,'MouseClick'))
                     return
 
-    def queryThread(self):
+    def queryThread(self,th):
         while not self.mFinished:
             i=self.getNewIndex()
             try:
@@ -134,7 +143,7 @@ class CIpQuery(object):
         if not self.hasStart:
             self.hasStart=True
             for i in range(0,10):
-                thread.start_new_thread(self.queryThread,())
+                thread.start_new_thread(self.queryThread,(i,))
     def endQuery(self):
         self.mFinished=True
 

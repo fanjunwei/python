@@ -15,7 +15,7 @@ threadcount=0
 writeLock=threading.RLock()
 countLock=threading.RLock()
 UserAgent='Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11B554a (392691824)/Worklight/6.0.0'
-
+ips=[]
 def addThreadCount():
     global writeLock,threadcount
     writeLock.acquire()
@@ -33,8 +33,9 @@ def outip(ip):
     writeLock.acquire()
     try:
         txt = ip+'\n'
-        output = open('enableIp.txt', 'a')
+        output = open('enableIp.txt', 'w')
         output.write(txt)
+        output.truncate()
         output.close()
     finally:
         writeLock.release()
@@ -55,13 +56,17 @@ def propxy(url,ip):
         return None
 
 def checkOneIP(ip):
+    global ips
     try:
         addThreadCount()
         url='https://kyfw.12306.cn/otn/login/init'
         res= propxy(url,ip)
         if res :
             print ip
-            outip(ip)
+            writeLock.acquire()
+            ips.append(ip)
+            writeLock.release()
+            #outip(ip)
             # resobj=json.loads(res)
             # if(resobj['status']):
             #     print ip
@@ -85,6 +90,7 @@ for i in obj:
 while threadcount>0:
     print 'wait=='
     time.sleep(1)
+outip('\n'.join(ips))
 print '==============================complate==============================='
 
 
