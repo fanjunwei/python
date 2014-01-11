@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>验证码提前输</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery-2.0.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+<img src="https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew.do?module=login&rand=sjrand">
+<input type="text" id="code">
+<div id="msg"></div>
+<div id="msg2"></div>
+<script>
+    function checkImageCode(code)
+    {
+        $.post("https://kyfw.12306.cn/otn/passcodeNew/checkRandCodeAnsyn",{rand:'sjrand',randCode:code},function(result){
+            if(result.data=="Y")
+            {
+                $('#msg').text('OK');
+            }
+            else
+            {
+                $('#msg').text('Err');
+                $('#msg2').text(result.messages[0]);
+            }
+        });
+    }
+    $('#code').keyup(function(){
+        if($('#code').val().length==4)
+        {
+            checkImageCode($('#code').val());
+        }
+
+    });
+</script>
+</body>
+</html>
