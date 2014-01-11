@@ -40,7 +40,7 @@ def response(context, flow):
         if not ipQuery :
             #@"二等座" @"一等座"  @"商务座"  @"特等座"  @"高级软卧" @"软卧"   @"硬卧"   @"软座"   @"硬座"
             #@"O"     @"M"      @"9"      @"P"      @"6"       @"4"      @"3"      @"2"     @"1"
-            ipQuery=CIpQuery.CIpQuery('L456','1',queryURL=url)
+            ipQuery=CIpQuery.CIpQuery('D2296','O',queryURL=url)
             ipQuery.startQuery()
         if ipQuery and ipQuery.enableRes :
             print '================ find ================\n'

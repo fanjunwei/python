@@ -19,9 +19,9 @@
     <file path="$PROJECT_DIR$/../BespeakMeal/bespeak/views.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389102734601" ignored="false" />
     <file path="$PROJECT_DIR$/../BespeakMeal/BespeakMeal/urls.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389102736559" ignored="false" />
     <file path="/mealTest.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389192094545" ignored="false" />
-    <file path="/CIpQuery.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389368075458" ignored="false" />
+    <file path="/CIpQuery.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389403467097" ignored="false" />
     <file path="/a.dummy" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389246485392" ignored="false" />
-    <file path="/AutoCommitTool.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389400007109" ignored="false" />
+    <file path="/AutoCommitTool.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389409074124" ignored="false" />
     <file path="/CPropxyQuery.py" changelist="1d4b0ce4-466e-4cb3-b3d1-38180fc07b12" time="1389366974859" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +39,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="CIpQuery.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CIpQuery.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="134" column="16" selection-start="4655" selection-end="4655" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="checkIP.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/checkIP.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,11 +57,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enableIp.txt" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/enableIp.txt">
+      <file leaf-file-name="AutoCommitTool.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AutoCommitTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="553" column="13" selection-start="7913" selection-end="7913" vertical-scroll-proportion="0.79910713">
-              <folding />
+            <state line="42" column="63" selection-start="1453" selection-end="1453" vertical-scroll-proportion="0.3638393">
+              <folding>
+                <element signature="e#14#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,9 +89,9 @@
         <option value="$PROJECT_DIR$/query.py" />
         <option value="$PROJECT_DIR$/CPropxyQuery.py" />
         <option value="$PROJECT_DIR$/proxyCheck.py" />
+        <option value="$PROJECT_DIR$/checkIP.py" />
         <option value="$PROJECT_DIR$/CIpQuery.py" />
         <option value="$PROJECT_DIR$/AutoCommitTool.py" />
-        <option value="$PROJECT_DIR$/checkIP.py" />
       </list>
     </option>
   </component>
@@ -358,7 +369,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39684814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31707317" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31707317" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -478,26 +489,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CIpQuery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="62" selection-start="5031" selection-end="5077" vertical-scroll-proportion="-16.423077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm20/python_stubs/-1698384448/thread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="118" column="4" selection-start="4009" selection-end="4009" vertical-scroll-proportion="0.33281735">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AutoCommitTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="60" selection-start="970" selection-end="970" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#14#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -515,6 +510,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/enableIp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="553" column="13" selection-start="7913" selection-end="7913" vertical-scroll-proportion="0.79910713">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/checkIP.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="8" selection-start="2137" selection-end="2137" vertical-scroll-proportion="0.0">
@@ -522,10 +524,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enableIp.txt">
+    <entry file="file://$PROJECT_DIR$/CIpQuery.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="553" column="13" selection-start="7913" selection-end="7913" vertical-scroll-proportion="0.79910713">
+        <state line="134" column="16" selection-start="4655" selection-end="4655" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AutoCommitTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="63" selection-start="1453" selection-end="1453" vertical-scroll-proportion="0.3638393">
+          <folding>
+            <element signature="e#14#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
