@@ -32,7 +32,7 @@ def outip(ip):
     global writeLock
     writeLock.acquire()
     try:
-        txt = ip+'\n'
+        txt = ip
         output = open('enableIp.txt', 'w')
         output.write(txt)
         output.truncate()
@@ -90,6 +90,7 @@ for i in obj:
 while threadcount>0:
     print 'wait=='
     time.sleep(1)
+print ','.join(ips)
 outip('\n'.join(ips))
 print '==============================complate==============================='
 
