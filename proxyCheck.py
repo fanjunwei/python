@@ -13,7 +13,7 @@ UserAgent='Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/5
 writeLock=threading.RLock()
 countLock=threading.RLock()
 threadcount=0
-
+propxylist=[]
 def propxy(url,proxyUrl):
     starts = time.time()
     proxy_support = urllib2.ProxyHandler({"http":"http://"+proxyUrl})
@@ -32,14 +32,13 @@ def propxy(url,proxyUrl):
 
 #print propxy('http://ip.chinaz.com/','217.169.209.2:6666')
 
-def outPropxy(proxyAddr,delay):
+def outPropxy(txt):
     global writeLock
     writeLock.acquire()
     try:
-        txt = proxyAddr+'\t'+str(delay)+'\n'
-
-        output = open('/Users/fanjunwei003/Desktop/enableProxy.txt', 'a')
+        output = open('enableProxy.txt', 'w')
         output.write(txt)
+        output.truncate()
         output.close()
     finally:
         writeLock.release()
@@ -70,7 +69,10 @@ def checkPropxy(proxyAddr):
             #print '%s\t%d'%(res,t)
             print proxyAddr
             print t
-            outPropxy(proxyAddr,t)
+            writeLock.acquire()
+            propxylist.append(proxyAddr)
+            writeLock.release()
+
     except:
         print 'errpr'
     finally:
@@ -122,6 +124,7 @@ def getAllProxy():
 
 #getAllProxy()
 checkAllPropxy()
-while threadcount==0:
-    print '****'
+while threadcount>0:
+    print 'wair =='
     time.sleep(1)
+outPropxy('\n'.join(propxylist))

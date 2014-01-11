@@ -45,7 +45,6 @@ def propxy(url,proxyUrl):
         res= f.read()
     except urllib2.URLError ,e:
         res=None
-
     return res
 
 

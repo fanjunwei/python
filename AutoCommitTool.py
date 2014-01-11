@@ -6,12 +6,14 @@ import StringIO
 import sys
 import inspect
 import os
+import thread
 this_file=inspect.getfile(inspect.currentframe())
 currentPath=os.path.abspath(os.path.dirname(this_file))
 sys.path.append(currentPath)
 import CIpQuery
 
 ipQuery=None
+
 def request(context, flow):
     global  ipQuery
     path = flow.request.path
@@ -35,12 +37,12 @@ def response(context, flow):
             if ipQuery.mQueryURL != url:
                 ipQuery.endQuery()
                 ipQuery=None
-        if not ipQuery:
+        if not ipQuery :
             #@"二等座" @"一等座"  @"商务座"  @"特等座"  @"高级软卧" @"软卧"   @"硬卧"   @"软座"   @"硬座"
             #@"O"     @"M"      @"9"      @"P"      @"6"       @"4"      @"3"      @"2"     @"1"
-            ipQuery=CIpQuery.CIpQuery('D632','O',queryURL=url)
+            ipQuery=CIpQuery.CIpQuery('L456','1',queryURL=url)
             ipQuery.startQuery()
-        if ipQuery.enableRes :
+        if ipQuery and ipQuery.enableRes :
             print '================ find ================\n'
             flow.response.headers['Content-Encoding']=[]
             flow.response.content = ipQuery.enableRes
@@ -49,4 +51,5 @@ def response(context, flow):
         flow.response.headers['Content-Encoding']=[]
         flow.response.headers['Content-Type']=['application/json;charset=UTF-8']
         flow.response.content = ipQuery.enableRes
+
 

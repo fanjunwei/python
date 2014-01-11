@@ -43,7 +43,7 @@ class CIpQuery(object):
         if not self.mFinished:
             print log
 
-    def propxy(self,url,ip):
+    def local(self,url,ip):
         try:
             #print ip
             array=url.split('/')
@@ -93,7 +93,7 @@ class CIpQuery(object):
             return
         print ip
         print '预订%s,%s\n'%(self.mTrainCode,self.mSeatMap[self.mSeat])
-        res = self.propxy(self.mQueryURL,ip)
+        res = self.local(self.mQueryURL,ip)
         if self.mFinished :
             return
         obj = json.loads(res)
@@ -121,6 +121,7 @@ class CIpQuery(object):
                 print(time.ctime(timeTick))
 
                 if(not self.mFinished and count>self.mMustCount):
+                    #tr['queryLeftNewDTO']['canWebBuy']='Y'
                     obj['data']=[tr];
                     res=json.dumps(obj)
                     self.mFinished=True
