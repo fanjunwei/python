@@ -1,0 +1,2 @@
+- name: ms-monitor
+  repo: ssh://git@172.16.99.4:10022/magicstack/ms-monitor.git
